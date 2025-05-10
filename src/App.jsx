@@ -4,17 +4,20 @@ import Home from './pages/Home'
 import CarDetails from './pages/CarDetails'
 import About from './pages/about';
 import Popular from './pages/popular'
-import Profile from './pages/profile'
+import Cart from './pages/Cart'
+import Book from './pages/Book'
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/cardetail' element={<CarDetails/>}/>
+        <Route path='/cardetails' element={<CarDetails/>}/>
         
         <Route path='/about' element={<About/>}/>
         <Route path='/popular' element={<Popular/>}/>
-        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/book' element={<Book/>}/>
+
       </Routes>
     </div>
   )

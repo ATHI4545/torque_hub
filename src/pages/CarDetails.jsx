@@ -8,7 +8,7 @@ import { MdModelTraining } from 'react-icons/md';
 import { GiMoneyStack } from 'react-icons/gi';
 import { SiGodotengine } from 'react-icons/si';
 import { FaArrowsSpin } from 'react-icons/fa6';
-
+import {addToCart} from '../Firebase'
 function Model({ url }) {
   const { scene } = useGLTF(url);
   return <primitive object={scene} scale={[1, 1, 1]} />;
@@ -18,6 +18,23 @@ const CarDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const car = location.state?.car;
+
+  const handleAddToCart = async () => {
+    if (!car) return;
+    const cartItem = {
+      carname: car.carname,
+      model: car.model,
+      price: car.price,
+      image: car.image,
+      engine: car.engine,
+      type: car.type,
+      torque: car.torque,
+      timestamp: new Date().toISOString(),
+    };
+    await addToCart(cartItem);
+    alert('Car added to cart!');
+    navigate('/cart'); // Navigate to cart page after adding
+  };
 
   return (
     <div className="bg-gray-900 min-h-screen text-white">
@@ -90,10 +107,16 @@ const CarDetails = () => {
         </div>
         {/* Add to Book and Add to Cart Buttons */}
         <div className="flex justify-center gap-4 mt-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl shadow-md transition">
-            Add to Book
-          </button>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl shadow-md transition">
+        <button
+  className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl shadow-md transition"
+  onClick={() => navigate('/book', { state: { car } })}
+>
+  Book now
+</button>
+          <button
+            onClick={handleAddToCart}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl shadow-md transition"
+          >
             Add to Cart
           </button>
         </div>

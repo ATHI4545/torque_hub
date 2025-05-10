@@ -7,15 +7,15 @@ const Navbar = () => {
     const {user}=useUser()
     const navigate=useNavigate()
   return (
-    <div className='flex items-center w-full h-20 bg-gradient-to-r from-blue-600 to-blue-800'>
+    <div className='flex items-center w-full h-20 bg-gradient-to-r from-blue-400 to-blue-600'>
         <div className='p-5 ml-6'>
             <img src={image} width={150} height={10} alt="" />
         </div>
         <div className='ml-150 p-2 flex'> 
-            <Link className='p-2 text-white'>Home</Link>
+            <Link to='/' className='p-2 text-white'>Home</Link>
             <Link to='/about' className='p-2 text-white'>About</Link>
             <Link to='/popular'className='p-2 text-white'>Popular</Link>
-            <Link to='/profile'className='p-2 text-white'>Profile</Link>
+          
             {
             user?<div className='flex items-center gap-3'>
               <Link to='/cart'>View cart</Link>

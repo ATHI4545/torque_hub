@@ -6,21 +6,25 @@ const popularCars = [
     name: 'Tesla Model S Plaid',
     image: 'https://images.overdrive.in/wp-content/uploads/2021/06/2021-Tesla-Model-S-Plaid-4.jpg',
     description: 'Top-notch electric performance and cutting-edge tech.',
+    rating: 4.8,
   },
   {
     name: 'Porsche Taycan Turbo S',
     image: 'https://images-porsche.imgix.net/-/media/41EB928C4F674C449FDA7EE2C10CCA01_12139A2E0C5041BFB166A8520566F095_TA24Q3DIX0011-taycan-turbo-front?w=999&q=85&auto=format',
     description: 'High-performance EV with a luxury edge.',
+    rating: 4.7,
   },
   {
     name: 'Lamborghini Urus',
     image: 'https://billeder.bilbasen.dk/bilinfo/fe9ec6f8-452c-4e90-a562-3278d4f616e9.jpeg?class=S960X960',
     description: 'The ultimate luxury SUV with monstrous power.',
+    rating: 4.9,
   },
   {
     name: 'BMW i8 Roadster',
     image: 'https://ymimg1.b8cdn.com/resized/car_model/7409/pictures/7435790/webp_mobile_listing_main_01.webp',
     description: 'Hybrid sports car with futuristic design.',
+    rating: 4.5,
   },
 ];
 
@@ -38,6 +42,10 @@ const Popular = () => {
     `;
     document.head.appendChild(style);
   }, []);
+
+  const handleBookNow = (carName) => {
+    navigate(`/book/${carName.replace(/\s+/g, '-').toLowerCase()}`);
+  };
 
   return (
     <div
@@ -85,6 +93,10 @@ const Popular = () => {
             />
             <h3 style={{ marginTop: '15px', fontSize: '1.4rem' }}>{car.name}</h3>
             <p style={{ marginTop: '10px', fontSize: '1rem', color: '#ddd' }}>{car.description}</p>
+            <p style={{ marginTop: '10px', fontSize: '1rem', color: '#ffd700' }}>
+              Rating: {car.rating} ★
+            </p>
+           
           </div>
         ))}
       </div>
